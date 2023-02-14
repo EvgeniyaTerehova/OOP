@@ -1,24 +1,27 @@
 package com.skypro.transport;
 
-public class Car extends Transport implements Competing{
+public class Truck extends Transport implements Competing {
+
     private final  Integer pitStopTime;
     private final Integer maxSpeed;
     private final Integer bestLapTime;
-    public Car(String brand, String model, float engineVolume, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
-      super(brand, model, engineVolume);
+
+    public Truck(String brand, String model, float engineVolume, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
+        super(brand, model, engineVolume);
         this.pitStopTime = pitStopTime;
         this.maxSpeed = maxSpeed;
         this.bestLapTime = bestLapTime;
     }
-    @Override
-    void start() {
-        System.out.println("Car started");
-    }
 
     @Override
-    void finish() {
-        System.out.println("Car finished");
+    void start() {
+        System.out.println("Truck started");;
     }
+    @Override
+    void finish() {
+        System.out.println("Truck finished");;
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();
@@ -42,7 +45,7 @@ public class Car extends Transport implements Competing{
     }
     @Override
     public String toString() {
-        return   "brand: " + getBrand() +
+        return  "brand: " + getBrand() +
                 ", model: " + getModel() +
                 ", engineVolume: " + getEngineVolume() +
                 ", pitStopTime: " + pitStopTime +
