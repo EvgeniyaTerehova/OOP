@@ -1,81 +1,56 @@
 package com.skypro.transport;
 
-import static com.skypro.transport.ValidateUtils.validateString;
+public abstract class Transport {
+    private static String brand;
+    private static String model;
+    private static float engineVolume;
 
-public class Transport {
-    public String brand;
-    public String model;
-    public int yearOfRelease;
-    public String countryOfProduction;
-    public String bodyColor;
-    public static int maxMovementSpeed;
-
-
-    public Transport(String brand,
-                     String model,
-                     int yearOfRelease,
-                     String countryOfProduction,
-                     String bodyColor,
-                     int maxMovementSpeed) {
-        this.brand = brand;
-        this.model = model;
-        this.yearOfRelease = yearOfRelease;
-        this.countryOfProduction = countryOfProduction;
-        this.bodyColor = bodyColor;
-        this.maxMovementSpeed = maxMovementSpeed;
+    public Transport(String brand, String model, float engineVolume) {
+        this.brand = validateCarParameters(brand);
+        this.model = validateCarParameters(model);
+        this.engineVolume = validateInteger(engineVolume, 0);
     }
 
-
-    public static String validateBodyColors (String value){
-        return validateString(value, "default");
-    }
-    public static Integer validateYearOfRelease (Integer value){
-        return value == null ? 1999 : value;
-    }
-
-    public String getBrand() {
+    public static String getBrand() {
         return brand;
     }
 
-    public String getModel() {
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public static String getModel() {
         return model;
     }
 
-    public int getYearOfRelease() {
-        return yearOfRelease;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public  String getCountryOfProduction() {
-        return countryOfProduction;
+    public float getEngineVolume() {
+        return engineVolume;
     }
 
-    public String getBodyColor() {
-        return bodyColor;
+    public void setEngineVolume(float engineVolume) {
+        this.engineVolume = engineVolume;
     }
 
-    public int getMaxMovementSpeed() {
-        return maxMovementSpeed;
+    private float validateInteger(float engineVolume, Integer value) {
+        return value == null || value <= 1 ? 0 : value;
     }
 
-    public void setBodyColor(String bodyColor) {
-        this.bodyColor = bodyColor;
+    private String validateCarParameters(String value) {
+        return value == null ? "не указано" : value;
     }
-
-    public void setMaxMovementSpeed(int maxMovementSpeed) {
-        this.maxMovementSpeed = maxMovementSpeed;
+    void start(){
+    }
+    void finish(){
     }
 
     @Override
     public String toString() {
-        return   "Transport- " + "brand: " + brand +
+        return  "brand: " + brand +
                 ", model: " + model +
-                ", yearOfRelease: " + yearOfRelease +
-                ", countryOfProduction: " + countryOfProduction +
-                ", bodyColor: " + bodyColor +
-                ", maxMovementSpeed: " + maxMovementSpeed;
-    }
-
-    protected String bodyColor() {
-        return bodyColor;
+                ", engineVolume: " + engineVolume;
     }
 }
