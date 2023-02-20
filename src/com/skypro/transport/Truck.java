@@ -2,15 +2,18 @@ package com.skypro.transport;
 
 public class Truck extends Transport implements Competing {
 
+
     private final  Integer pitStopTime;
     private final Integer maxSpeed;
     private final Integer bestLapTime;
+    private TypeLoadCapacity typeLoadCapacity;
 
     public Truck(String brand, String model, float engineVolume, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
         super(brand, model, engineVolume);
         this.pitStopTime = pitStopTime;
         this.maxSpeed = maxSpeed;
         this.bestLapTime = bestLapTime;
+        this.typeLoadCapacity = typeLoadCapacity;
     }
 
     @Override
@@ -20,6 +23,26 @@ public class Truck extends Transport implements Competing {
     @Override
     void finish() {
         System.out.println("Truck finished");;
+    }
+
+    public TypeLoadCapacity getTypeLoadCapacity() {
+        return typeLoadCapacity;
+    }
+
+    @Override
+    public Type getType() {
+        return Type.TRUCK;
+    }
+    @Override
+    public void printType(){
+        if (getTypeLoadCapacity() == null){
+            System.out.println("Недостаточно данных");
+        }else {
+            System.out.println(getTypeLoadCapacity());
+        }
+    }
+    public TypeLoadCapacity typeLoadCapacity(){
+        return typeLoadCapacity;
     }
 
     @Override
@@ -50,6 +73,7 @@ public class Truck extends Transport implements Competing {
                 ", engineVolume: " + getEngineVolume() +
                 ", pitStopTime: " + pitStopTime +
                 ", maxSpeed: " + maxSpeed +
-                ", bestLapTime: " + bestLapTime;
+                ", bestLapTime: " + bestLapTime +
+                ", type: " + typeLoadCapacity;
     }
 }
