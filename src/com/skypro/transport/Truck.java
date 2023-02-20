@@ -41,6 +41,12 @@ public class Truck extends Transport implements Competing {
             System.out.println(getTypeLoadCapacity());
         }
     }
+
+    @Override
+    boolean passDiagnostics() throws TransportTypeException {
+        return this.passDiagnostics();
+    }
+
     public TypeLoadCapacity typeLoadCapacity(){
         return typeLoadCapacity;
     }

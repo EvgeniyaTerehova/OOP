@@ -4,6 +4,7 @@ public abstract class Transport {
     private static String brand;
     private static String model;
     private static float engineVolume;
+    private boolean passDiagnostics;
 
     public Transport(String brand, String model, float engineVolume) {
         this.brand = validateCarParameters(brand);
@@ -13,6 +14,10 @@ public abstract class Transport {
 
     public static String getBrand() {
         return brand;
+    }
+
+    public void setPassDiagnostics(boolean passDiagnostics) {
+        this.passDiagnostics = passDiagnostics;
     }
 
     public void setBrand(String brand) {
@@ -49,6 +54,10 @@ public abstract class Transport {
     public abstract Type getType();
 
     public abstract void printType();
+    public boolean isPassDiagnostics(){
+        return passDiagnostics;
+    }
+    abstract boolean passDiagnostics() throws TransportTypeException;
 
     @Override
     public String toString() {

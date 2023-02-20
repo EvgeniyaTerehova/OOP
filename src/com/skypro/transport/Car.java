@@ -42,6 +42,12 @@ public class Car extends Transport implements Competing{
             System.out.println(getBodyType());
         }
     }
+
+    @Override
+    boolean passDiagnostics() throws TransportTypeException {
+        return this.passDiagnostics();
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();

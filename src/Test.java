@@ -1,4 +1,5 @@
 import com.skypro.transport.*;
+import transport.NolicenseException;
 
 public class Test {
     private static Car[] cars = new Car[4];
@@ -76,6 +77,32 @@ public class Test {
         printTypeCapacity();
         System.out.println();
         printTypeLoadCapacity();
+
+        try {
+            checkTransport (buses, trucks, cars);
+        }catch (TransportTypeException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        printPassDiagnostics();
+    }
+
+    private static void printPassDiagnostics() {
+        System.out.println("Автобусы диагностику проходить не должны");
+    }
+
+    private static void checkTransport(Bus[] buses, Truck[] trucks, Car[] cars) {
+    }
+
+    public static void checkTransport(Transport... transports) throws TransportTypeException {
+        int count = 0;
+        for (Transport transport : transports){
+            if(!transport.isPassDiagnostics()){
+            } else {
+                count++;
+            }
+        }
+        System.out.println("Диагностику прошли " + count + " из " + transports.length + "автомобилей");
     }
 
     private static void printTypeLoadCapacity() {
@@ -84,6 +111,9 @@ public class Test {
             System.out.println(TypeLoadCapacity.N2);
             System.out.println(TypeLoadCapacity.N3);
         }
+    }
+    public static void testDiagnostics() throws NolicenseException {
+
     }
 
     private static void printTypeCapacity() {
