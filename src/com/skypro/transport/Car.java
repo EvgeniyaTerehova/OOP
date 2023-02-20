@@ -1,14 +1,20 @@
 package com.skypro.transport;
 
 public class Car extends Transport implements Competing{
+
+
     private final  Integer pitStopTime;
     private final Integer maxSpeed;
     private final Integer bestLapTime;
+    private BodyType bodyType;
+
     public Car(String brand, String model, float engineVolume, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
-      super(brand, model, engineVolume);
+        super(brand, model, engineVolume);
         this.pitStopTime = pitStopTime;
         this.maxSpeed = maxSpeed;
         this.bestLapTime = bestLapTime;
+        this.bodyType = bodyType;
+
     }
     @Override
     void start() {
@@ -18,6 +24,23 @@ public class Car extends Transport implements Competing{
     @Override
     void finish() {
         System.out.println("Car finished");
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    @Override
+    public Type getType() {
+        return Type.CAR;
+    }
+    @Override
+    public void printType(){
+        if (getBodyType() == null){
+            System.out.println("Недостаточно данных");
+        }else {
+            System.out.println(getBodyType());
+        }
     }
     @Override
     public int hashCode() {
@@ -47,6 +70,7 @@ public class Car extends Transport implements Competing{
                 ", engineVolume: " + getEngineVolume() +
                 ", pitStopTime: " + pitStopTime +
                 ", maxSpeed: " + maxSpeed +
-                ", bestLapTime: " + bestLapTime;
+                ", bestLapTime: " + bestLapTime +
+                ", type: " + bodyType;
     }
 }

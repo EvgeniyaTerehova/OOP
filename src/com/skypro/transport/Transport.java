@@ -46,6 +46,9 @@ public abstract class Transport {
     }
     void finish(){
     }
+    public abstract Type getType();
+
+    public abstract void printType();
 
     @Override
     public String toString() {
