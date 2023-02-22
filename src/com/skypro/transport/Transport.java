@@ -49,6 +49,16 @@ public abstract class Transport {
     public abstract Type getType();
 
     public abstract void printType();
+    public boolean checkTransportNeedService () {
+        try {
+            passDiagnostics();
+        } catch (TransportTypeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public abstract boolean passDiagnostics() throws TransportTypeException;
 
     @Override
     public String toString() {

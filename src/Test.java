@@ -76,6 +76,27 @@ public class Test {
         printTypeCapacity();
         System.out.println();
         printTypeLoadCapacity();
+
+        printPassDiagnostics();
+        try {
+            checkTransport (buses);
+        }catch (TransportTypeException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void printPassDiagnostics() {
+        System.out.println("Автобусы диагностику проходить не должны");
+    }
+    public static void checkTransport(Transport... transports) throws TransportTypeException {
+        int count = 0;
+        for (Transport transport : transports){
+            if(transport.passDiagnostics()){
+                count++;
+            }
+        }
+        System.out.println("Диагностику прошли " + count + " из " + transports.length + "автомобилей");
     }
 
     private static void printTypeLoadCapacity() {
@@ -85,7 +106,6 @@ public class Test {
             System.out.println(TypeLoadCapacity.N3);
         }
     }
-
     private static void printTypeCapacity() {
         for (TypeCapacity typeCapacity : TypeCapacity.values()) {
             System.out.println(TypeCapacity.ESPECIALESMALL);
