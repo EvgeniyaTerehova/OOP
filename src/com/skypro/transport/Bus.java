@@ -45,7 +45,7 @@ public class Bus extends Transport implements Competing  {
    }
 
    @Override
-   boolean passDiagnostics() throws TransportTypeException {
+   public boolean passDiagnostics() throws TransportTypeException {
       throw new TransportTypeException("Автобусы диагностику проходить не должны");
    }
 

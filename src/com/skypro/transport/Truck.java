@@ -43,7 +43,7 @@ public class Truck extends Transport implements Competing {
     }
 
     @Override
-    boolean passDiagnostics() throws TransportTypeException {
+    public boolean passDiagnostics() throws TransportTypeException {
         return this.passDiagnostics();
     }
 
