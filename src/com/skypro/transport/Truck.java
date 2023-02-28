@@ -17,6 +17,16 @@ public class Truck extends Transport implements Competing {
     }
 
     @Override
+    public void nameofTheCarDriver() {
+        System.out.println("Имя водителя - " + Driver.getName());
+    }
+
+    @Override
+    public  void mechanicsServicingTheCar() {
+        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + mechanic1 + " , " + mechanic4);
+    }
+
+    @Override
     void start() {
         System.out.println("Truck started");;
     }

@@ -1,18 +1,33 @@
 package com.skypro.transport;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Transport {
     private static String brand;
     private static String model;
     private static float engineVolume;
 
+
     public Transport(String brand, String model, float engineVolume) {
         this.brand = validateCarParameters(brand);
         this.model = validateCarParameters(model);
         this.engineVolume = validateInteger(engineVolume, 0);
     }
+    List<Mechanic> mechanic = new ArrayList<>();
+    String mechanic1 = String.valueOf(new Mechanic("Князев Дмитрий", "Автосервис"));
+    String mechanic2 = String.valueOf(new Mechanic("Баринов Кирил", "Автосервис"));
+    String mechanic3 = String.valueOf(new Mechanic("Попов Антон", "Автосервис"));
+    String mechanic4 = String.valueOf(new Mechanic("Иванов Александр", "Автосервис"));
+
+    public void nameofTheCarDriver(){
+        System.out.println("Имя водителя - " + Driver.getName());
+    }
+    public  void mechanicsServicingTheCar(){
+        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + mechanic1 + " , " + mechanic4);
+    }
 
     public static String getBrand() {
-        return brand;
+       return brand;
     }
 
     public void setBrand(String brand) {
