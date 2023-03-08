@@ -1,5 +1,10 @@
 import com.skypro.transport.*;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class Test {
     private static Car[] cars = new Car[4];
     private static Bus[] buses = new Bus[4];
@@ -15,6 +20,7 @@ public class Test {
                 new Car("BMW", "Z8", 2.4f, 12, 248, 55),
                 new Car("Kia", "Sportage 4", 2.4f, 11, 245, 58),
                 new Car("Hyundai", "Avent", 1.6f, 14, 240, 61),
+
         };
         printCars();
         System.out.println();
@@ -84,8 +90,75 @@ public class Test {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
+
+        Mechanic kniazev = new Mechanic("Князев Дмитрий", "Автосервис");
+        Mechanic barinov = new Mechanic("Баринов Кирил", "Автосервис");
+        Mechanic popov = new Mechanic("Попов Антон", "Автосервис");
+        Mechanic ivanov = new Mechanic("Иванов Александр", "Автосервис");
+
+        List<Mechanic> mechanicList = new ArrayList<>();
+        Mechanic mechanic1 = new Mechanic("Князев Дмитрий", "Автосервис");
+        Mechanic mechanic2 = new Mechanic("Баринов Кирил", "Автосервис");
+        Mechanic mechanic3 = new Mechanic("Попов Антон", "Автосервис");
+        Mechanic mechanic4 = new Mechanic("Иванов Александр", "Автосервис");
+
+        mechanicList.add(mechanic1);
+        mechanicList.add(mechanic2);
+        mechanicList.add(mechanic3);
+        mechanicList.add(mechanic4);
+
+        System.out.println(mechanic1);
+        System.out.println(mechanic2);
+        System.out.println(mechanic3);
+        System.out.println(mechanic4);
+        System.out.println();
+        mechanic1.fixTheCar(new Bus("Mercedes-Benz", "Intouro", 7.2f, 26, 181, 119));
+        mechanic1.performMaintenance(new Car("Kia", "Sportage 4", 2.4f, 11, 245, 58));
+        System.out.println();
+        mechanicsServicingTheCar();
+        System.out.println();
+        printCarDriver();
+        System.out.println();
+
+        Queue<Transport> queueToService = new LinkedList<>();
+        queueToService.add(new Car("Audi", "A8", 3.0f, 10, 250, 60));
+        queueToService.add(new Car("BMW", "Z8", 2.4f, 12, 248, 55));
+        queueToService.add(new Car("Kia", "Sportage 4", 2.4f, 11, 245, 58));
+        queueToService.add(new Car("Hyundai", "Avent", 1.6f, 14, 240, 61));
+        queueToService.add(new Bus("Mercedes-Benz", "Conecto G", 7.7f, 25, 205, 120));
+        queueToService.add(new Bus("Mercedes-Benz", "Intouro", 7.2f, 26, 181, 119));
+        queueToService.add(new Bus("Mercedes-Benz", "Travego", 12.8f, 24, 180, 120));
+        queueToService.add(new Bus("Mercedes-Benz", "Tourismo M2", 10.7f, 27, 185, 123));
+        queueToService.add(new Truck("Foton", "Ollin BJ1069", 4.5f, 20, 195, 150));
+        queueToService.add(new Truck("Foton", "BJ 1089VDPFG-SD", 4.8f, 21, 198, 154));
+        queueToService.add(new Truck("BAW", "Tonik", 4.7f, 23, 189, 149));
+        queueToService.add(new Truck("BAW", "Fenix L", 4.3f, 25, 196, 161));
+        System.out.println(queueToService.peek());
+        printCarryOutATechnicalInspectionOfTheCar();
     }
 
+    public void addACarToTheQueue(){
+        System.out.println("Добавить авто в очередь" );
+    }
+
+    private static void printCarryOutATechnicalInspectionOfTheCar() {
+        System.out.println("Техосмотр прошли: " + ServiceStation.getAiiTransport());
+    }
+
+    private static void printCarDriver() {
+        System.out.println("Водитель " + DriverD.getName() + " управляет " + Truck.getBrand() + " " + Truck.getModel());
+    }
+
+    private static void mechanicsServicingTheCar() {
+        System.out.println("Механники, обслуживающие автомобиль " + Car.getBrand() +" " + Car.getModel() + " : " + new Mechanic("Баринов Кирил", "Автосервис") + " , " + new Mechanic ("Иванов Александр", "Автосервис"));
+    }
+
+    public static void mechanicsServicingTheCar(String mechanic1, String mechanic4){
+       
+    }
+    public static void nameofTheCarDriver(){
+        System.out.println("Имя водителя - " + DriverD.getName());
+    }
     private static void printPassDiagnostics() {
         System.out.println("Автобусы диагностику проходить не должны");
     }
