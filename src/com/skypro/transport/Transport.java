@@ -1,29 +1,52 @@
 package com.skypro.transport;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Transport {
     private static String brand;
     private static String model;
     private static float engineVolume;
+    private Driver driver;
+    private  List<Mechanic> mechanicList;
+    private Type type;
 
 
-    public Transport(String brand, String model, float engineVolume) {
+    public Transport(String brand, String model, float engineVolume, Driver driver, List<Mechanic> mechanicList) {
         this.brand = validateCarParameters(brand);
         this.model = validateCarParameters(model);
         this.engineVolume = validateInteger(engineVolume, 0);
+        this.driver = driver;
+        this.mechanicList = mechanicList;
     }
-    List<Mechanic> mechanic = new ArrayList<>();
-    String mechanic1 = String.valueOf(new Mechanic("Князев Дмитрий", "Автосервис"));
-    String mechanic2 = String.valueOf(new Mechanic("Баринов Кирил", "Автосервис"));
-    String mechanic3 = String.valueOf(new Mechanic("Попов Антон", "Автосервис"));
-    String mechanic4 = String.valueOf(new Mechanic("Иванов Александр", "Автосервис"));
+
+    public Transport(String brand, String model, float engineVolume) {
+    }
+
+    public List<Mechanic> getMechanics() {
+        return mechanicList;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public List<Mechanic> getMechanicList() {
+        return mechanicList;
+    }
+
+    public void setMechanics(List<Mechanic> mechanics) {
+        this.mechanicList = mechanicList;
+    }
+    public void carDriver (){
+        System.out.println("Водитель " + DriverD.getName() + " управляет " + Truck.getBrand() + " " + Truck.getModel());
+    }
 
     public void nameofTheCarDriver(){
         System.out.println("Имя водителя - " + Driver.getName());
     }
     public  void mechanicsServicingTheCar(){
-        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + mechanic1 + " , " + mechanic4);
+        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + getMechanics() );
     }
 
     public static String getBrand() {
@@ -76,9 +99,24 @@ public abstract class Transport {
     public abstract boolean passDiagnostics() throws TransportTypeException;
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport transport = (Transport) o;
+        return driver.equals(transport.driver) && mechanicList.equals(transport.mechanicList) && type == transport.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(driver, mechanicList, type);
+    }
+
+    @Override
     public String toString() {
         return  "brand: " + brand +
                 ", model: " + model +
-                ", engineVolume: " + engineVolume;
+                ", engineVolume: " + engineVolume +
+                ", driver: " + driver +
+                ", mechanics: " + mechanicList;
     }
 }

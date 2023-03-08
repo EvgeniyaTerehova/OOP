@@ -1,15 +1,17 @@
 package com.skypro.transport;
 
-public class Car extends Transport implements Competing{
+import java.util.List;
 
+public class Car extends Transport implements Competing{
 
     private final  Integer pitStopTime;
     private final Integer maxSpeed;
     private final Integer bestLapTime;
     private BodyType bodyType;
 
-    public Car(String brand, String model, float engineVolume, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
-        super(brand, model, engineVolume);
+
+    public Car(String brand, String model, float engineVolume, Driver driver, List<Mechanic> mechanicList, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
+        super(brand, model, engineVolume, driver, mechanicList);
         this.pitStopTime = pitStopTime;
         this.maxSpeed = maxSpeed;
         this.bestLapTime = bestLapTime;
@@ -24,7 +26,7 @@ public class Car extends Transport implements Competing{
 
     @Override
     public  void mechanicsServicingTheCar() {
-        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + mechanic1 + " , " + mechanic4);
+        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + getMechanics());
     }
 
     @Override
@@ -85,6 +87,8 @@ public class Car extends Transport implements Competing{
         return   "brand: " + getBrand() +
                 ", model: " + getModel() +
                 ", engineVolume: " + getEngineVolume() +
+                ", driver: " + getDriver() +
+                ", mechanics: " + getMechanicList() +
                 ", pitStopTime: " + pitStopTime +
                 ", maxSpeed: " + maxSpeed +
                 ", bestLapTime: " + bestLapTime +

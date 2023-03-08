@@ -96,16 +96,16 @@ public class Test {
         Mechanic popov = new Mechanic("Попов Антон", "Автосервис");
         Mechanic ivanov = new Mechanic("Иванов Александр", "Автосервис");
 
-        List<Mechanic> mechanic = new ArrayList<>();
+        List<Mechanic> mechanicList = new ArrayList<>();
         Mechanic mechanic1 = new Mechanic("Князев Дмитрий", "Автосервис");
         Mechanic mechanic2 = new Mechanic("Баринов Кирил", "Автосервис");
         Mechanic mechanic3 = new Mechanic("Попов Антон", "Автосервис");
         Mechanic mechanic4 = new Mechanic("Иванов Александр", "Автосервис");
 
-        mechanic.add(mechanic1);
-        mechanic.add(mechanic2);
-        mechanic.add(mechanic3);
-        mechanic.add(mechanic4);
+        mechanicList.add(mechanic1);
+        mechanicList.add(mechanic2);
+        mechanicList.add(mechanic3);
+        mechanicList.add(mechanic4);
 
         System.out.println(mechanic1);
         System.out.println(mechanic2);
@@ -117,11 +117,36 @@ public class Test {
         System.out.println();
         mechanicsServicingTheCar();
         System.out.println();
+        printCarDriver();
+        System.out.println();
 
         Queue<Transport> queueToService = new LinkedList<>();
-        queueToService.offer(new Car("Audi", "A8", 3.0f, 10, 250, 60));
-        queueToService.offer(new Car("BMW", "Z8", 2.4f, 12, 248, 55));
-        queueToService.offer(new Car("Kia", "Sportage 4", 2.4f, 11, 245, 58));
+        queueToService.add(new Car("Audi", "A8", 3.0f, 10, 250, 60));
+        queueToService.add(new Car("BMW", "Z8", 2.4f, 12, 248, 55));
+        queueToService.add(new Car("Kia", "Sportage 4", 2.4f, 11, 245, 58));
+        queueToService.add(new Car("Hyundai", "Avent", 1.6f, 14, 240, 61));
+        queueToService.add(new Bus("Mercedes-Benz", "Conecto G", 7.7f, 25, 205, 120));
+        queueToService.add(new Bus("Mercedes-Benz", "Intouro", 7.2f, 26, 181, 119));
+        queueToService.add(new Bus("Mercedes-Benz", "Travego", 12.8f, 24, 180, 120));
+        queueToService.add(new Bus("Mercedes-Benz", "Tourismo M2", 10.7f, 27, 185, 123));
+        queueToService.add(new Truck("Foton", "Ollin BJ1069", 4.5f, 20, 195, 150));
+        queueToService.add(new Truck("Foton", "BJ 1089VDPFG-SD", 4.8f, 21, 198, 154));
+        queueToService.add(new Truck("BAW", "Tonik", 4.7f, 23, 189, 149));
+        queueToService.add(new Truck("BAW", "Fenix L", 4.3f, 25, 196, 161));
+        System.out.println(queueToService.peek());
+        printCarryOutATechnicalInspectionOfTheCar();
+    }
+
+    public void addACarToTheQueue(){
+        System.out.println("Добавить авто в очередь" );
+    }
+
+    private static void printCarryOutATechnicalInspectionOfTheCar() {
+        System.out.println("Техосмотр прошли: " + ServiceStation.getAiiTransport());
+    }
+
+    private static void printCarDriver() {
+        System.out.println("Водитель " + DriverD.getName() + " управляет " + Truck.getBrand() + " " + Truck.getModel());
     }
 
     private static void mechanicsServicingTheCar() {
