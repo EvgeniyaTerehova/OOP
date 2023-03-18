@@ -9,8 +9,8 @@ public class Truck  extends Transport implements Competing {
     private final Integer bestLapTime;
     private TypeLoadCapacity typeLoadCapacity;
 
-    public Truck(String brand, String model, float engineVolume,Driver driver, List<Mechanic> mechanicList, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
-        super(brand, model, engineVolume, driver, mechanicList);
+    public Truck(String brand, String model, float engineVolume, List<Mechanic>mechanicList, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
+        super(brand, model, engineVolume, mechanicList);
         this.pitStopTime = pitStopTime;
         this.maxSpeed = maxSpeed;
         this.bestLapTime = bestLapTime;
@@ -24,7 +24,7 @@ public class Truck  extends Transport implements Competing {
 
     @Override
     public  void mechanicsServicingTheCar() {
-        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + getMechanics());
+        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + getMechanicList());
     }
 
     @Override
@@ -88,7 +88,6 @@ public class Truck  extends Transport implements Competing {
         return  "brand: " + getBrand() +
                 ", model: " + getModel() +
                 ", engineVolume: " + getEngineVolume() +
-                ", driver: " + getDriver() +
                 ", mechanics: " + getMechanicList() +
                 ", pitStopTime: " + pitStopTime +
                 ", maxSpeed: " + maxSpeed +

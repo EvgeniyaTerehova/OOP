@@ -10,15 +10,14 @@ public class Car extends Transport implements Competing{
     private BodyType bodyType;
 
 
-    public Car(String brand, String model, float engineVolume, Driver driver, List<Mechanic> mechanicList, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
-        super(brand, model, engineVolume, driver, mechanicList);
+    public Car(String brand, String model, float engineVolume,  List<Mechanic> mechanicList, Integer pitStopTime, Integer maxSpeed, Integer bestLapTime) {
+        super(brand, model, engineVolume, mechanicList);
         this.pitStopTime = pitStopTime;
         this.maxSpeed = maxSpeed;
         this.bestLapTime = bestLapTime;
         this.bodyType = bodyType;
 
     }
-
     @Override
     public void nameofTheCarDriver() {
         System.out.println("Имя водителя - " + Driver.getName());
@@ -26,7 +25,7 @@ public class Car extends Transport implements Competing{
 
     @Override
     public  void mechanicsServicingTheCar() {
-        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + getMechanics());
+        System.out.println("Имена механников, обслуживающих автомобиль " + Car.getBrand() + Car.getModel() + " : " + getMechanicList());
     }
 
     @Override
@@ -87,7 +86,6 @@ public class Car extends Transport implements Competing{
         return   "brand: " + getBrand() +
                 ", model: " + getModel() +
                 ", engineVolume: " + getEngineVolume() +
-                ", driver: " + getDriver() +
                 ", mechanics: " + getMechanicList() +
                 ", pitStopTime: " + pitStopTime +
                 ", maxSpeed: " + maxSpeed +
