@@ -1,9 +1,6 @@
 import com.skypro.transport.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import static com.skypro.transport.Transport.getCarToTheQueue;
 
@@ -109,8 +106,6 @@ public class Test {
             System.out.println(e.getMessage());
         }
 
-
-
         System.out.println(mechanic1);
         System.out.println(mechanic2);
         System.out.println(mechanic3);
@@ -139,6 +134,29 @@ public class Test {
         queueToService.offer(new Truck("BAW", "Fenix L", 4.3f, mechanicList, 45,196, 161));
         System.out.println(queueToService.peek());
         printCarOutATechnicalInspectionOfTheCar();
+
+        //Введение в коллекции. Map*/
+
+        List<Transport> transports = new ArrayList<>();
+        transports.add(new Car("Audi", "A8", 3.0f, mechanicList, 60, 250, 7));
+        transports.add(new Car("BMW", "Z8", 2.4f, mechanicList, 58,  270, 10));
+        transports.add(new Car("Kia", "Sportage 4", 2.4f, mechanicList, 58, 240, 11));
+        transports.add(new Car("Hyundai", "Avent", 1.6f, mechanicList, 57, 261, 14));
+        transports.add(new Bus("Mercedes-Benz", "Conecto G", 7.7f, mechanicList, 60, 120, 45));
+        transports.add(new Bus("Mercedes-Benz", "Intouro", 7.2f, mechanicList, 58,181, 119));
+        transports.add(new Bus("Mercedes-Benz", "Travego", 12.8f, mechanicList, 59,180, 120));
+        transports.add(new Bus("Mercedes-Benz", "Tourismo M2", 10.7f, mechanicList, 61,185, 123));
+        transports.add(new Truck("Foton", "Ollin BJ1069", 4.5f, mechanicList, 48, 195, 150));
+        transports.add(new Truck("Foton", "BJ 1089VDPFG-SD", 4.8f, mechanicList, 47,198, 154));
+        transports.add(new Truck("BAW", "Tonik", 4.7f, mechanicList, 49,189, 149));
+        transports.add(new Truck("BAW", "Fenix L", 4.3f, mechanicList, 45,196, 161));
+
+
+        Map<Transport, List<Mechanic>> map = new HashMap<>();
+
+        for (Transport transport : transports) {
+            map.put(transport, transport.getMechanicList());
+        }
     }
     public static void addACarToTheQueue(Transport transport) throws TransportTypeException {
         transport.passDiagnostics();
