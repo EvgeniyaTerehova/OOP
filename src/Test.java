@@ -1,5 +1,12 @@
 import com.skypro.transport.*;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import static com.skypro.transport.Transport.getCarToTheQueue;
+
 public class Test {
     private static Car[] cars = new Car[4];
     private static Bus[] buses = new Bus[4];
@@ -10,29 +17,46 @@ public class Test {
     private static DriverD[] driverDS = new DriverD[4];
 
     public static void main(String[] args) {
+        Mechanic kniazev = new Mechanic("Князев Дмитрий", "Автосервис");
+        Mechanic barinov = new Mechanic("Баринов Кирил", "Автосервис");
+        Mechanic popov = new Mechanic("Попов Антон", "Автосервис");
+        Mechanic ivanov = new Mechanic("Иванов Александр", "Автосервис");
+
+        List<Mechanic> mechanicList = new ArrayList<>();
+        Mechanic mechanic1 = new Mechanic("Князев Дмитрий", "Автосервис");
+        Mechanic mechanic2 = new Mechanic("Баринов Кирил", "Автосервис");
+        Mechanic mechanic3 = new Mechanic("Попов Антон", "Автосервис");
+        Mechanic mechanic4 = new Mechanic("Иванов Александр", "Автосервис");
+        mechanicList.add(mechanic1);
+        mechanicList.add(mechanic2);
+        mechanicList.add(mechanic3);
+        mechanicList.add(mechanic4);
+
+
         cars = new Car[]{
-                new Car("Audi", "A8", 3.0f, 10, 250, 60),
-                new Car("BMW", "Z8", 2.4f, 12, 248, 55),
-                new Car("Kia", "Sportage 4", 2.4f, 11, 245, 58),
-                new Car("Hyundai", "Avent", 1.6f, 14, 240, 61),
+                new Car("Audi", "A8", 3.0f, mechanicList, 60, 250, 7),
+                new Car("BMW", "Z8", 2.4f, mechanicList, 58,  270, 10),
+                new Car("Kia", "Sportage 4", 2.4f, mechanicList, 58, 240, 11),
+                new Car("Hyundai", "Avent", 1.6f, mechanicList, 57, 261, 14)
+
         };
         printCars();
         System.out.println();
 
         buses = new Bus[]{
-                new Bus("Mercedes-Benz", "Conecto G", 7.7f, 25, 205, 120),
-                new Bus("Mercedes-Benz", "Intouro", 7.2f, 26, 181, 119),
-                new Bus("Mercedes-Benz", "Travego", 12.8f, 24, 180, 120),
-                new Bus("Mercedes-Benz", "Tourismo M2", 10.7f, 27, 185, 123)
+                new Bus("Mercedes-Benz", "Conecto G", 7.7f, mechanicList, 60, 120, 45),
+                new Bus("Mercedes-Benz", "Intouro", 7.2f, mechanicList, 58,181, 119),
+                new Bus("Mercedes-Benz", "Travego", 12.8f, mechanicList, 59,180, 120),
+                new Bus("Mercedes-Benz", "Tourismo M2", 10.7f, mechanicList, 61,185, 123)
         };
         printBuses();
         System.out.println();
 
         trucks = new Truck[]{
-                new Truck("Foton", "Ollin BJ1069", 4.5f, 20, 195, 150),
-                new Truck("Foton", "BJ 1089VDPFG-SD", 4.8f, 21, 198, 154),
-                new Truck("BAW", "Tonik", 4.7f, 23, 189, 149),
-                new Truck("BAW", "Fenix L", 4.3f, 25, 196, 161)
+                new Truck("Foton", "Ollin BJ1069", 4.5f, mechanicList, 48,195, 150),
+                new Truck("Foton", "BJ 1089VDPFG-SD", 4.8f, mechanicList, 47,198, 154),
+                new Truck("BAW", "Tonik", 4.7f, mechanicList, 49,189, 149),
+                new Truck("BAW", "Fenix L", 4.3f, mechanicList, 45,196, 161)
 
         };
         printTrucks();
@@ -84,8 +108,67 @@ public class Test {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
+
+
+
+        System.out.println(mechanic1);
+        System.out.println(mechanic2);
+        System.out.println(mechanic3);
+        System.out.println(mechanic4);
+        System.out.println();
+        mechanic1.fixTheCar(new Bus("Mercedes-Benz", "Intouro", 7.2f, mechanicList, 58,181, 119));
+        mechanic1.performMaintenance(new Car("Kia", "Sportage 4", 2.4f, mechanicList, 58, 240, 11));
+        System.out.println();
+        mechanicsServicingTheCar();
+        System.out.println();
+        printCarDriver();
+        System.out.println();
+
+        Queue<Transport> queueToService = new LinkedList<>();
+        queueToService.offer(new Car("Audi", "A8", 3.0f, mechanicList, 60, 250, 7));
+        queueToService.offer(new Car("BMW", "Z8", 2.4f, mechanicList, 58,  270, 10));
+        queueToService.offer(new Car("Kia", "Sportage 4", 2.4f, mechanicList, 58, 240, 11));
+        queueToService.offer(new Car("Hyundai", "Avent", 1.6f, mechanicList, 57, 261, 14));
+        queueToService.offer(new Bus("Mercedes-Benz", "Conecto G", 7.7f, mechanicList, 60, 120, 45));
+        queueToService.offer(new Bus("Mercedes-Benz", "Intouro", 7.2f, mechanicList, 58,181, 119));
+        queueToService.offer(new Bus("Mercedes-Benz", "Travego", 12.8f, mechanicList, 59,180, 120));
+        queueToService.offer(new Bus("Mercedes-Benz", "Tourismo M2", 10.7f, mechanicList, 61,185, 123));
+        queueToService.offer(new Truck("Foton", "Ollin BJ1069", 4.5f, mechanicList, 48,195, 150));
+        queueToService.offer(new Truck("Foton", "BJ 1089VDPFG-SD", 4.8f, mechanicList, 47,198, 154));
+        queueToService.offer(new Truck("BAW", "Tonik", 4.7f, mechanicList, 49,189, 149));
+        queueToService.offer(new Truck("BAW", "Fenix L", 4.3f, mechanicList, 45,196, 161));
+        System.out.println(queueToService.peek());
+        printCarOutATechnicalInspectionOfTheCar();
+    }
+    public static void addACarToTheQueue(Transport transport) throws TransportTypeException {
+        transport.passDiagnostics();
+        getCarToTheQueue().offer(transport);
+    }
+    public static void printCarOutATechnicalInspectionOfTheCar() {
+        Transport transport = (Transport) getCarToTheQueue().poll();
+        if (transport != null) {
+            List<Mechanic> carMechanics = transport.getMechanicList();
+            Mechanic carMechanic = carMechanics.get(0);
+            carMechanic.performMaintenance((Car) transport);
+        } else {
+            System.out.println("Очередь пуста");
+        }
     }
 
+    private static void printCarDriver() {
+        System.out.println("Водитель " + DriverD.getName() + " управляет " + Truck.getBrand() + " " + Truck.getModel());
+    }
+
+    private static void mechanicsServicingTheCar() {
+        System.out.println("Механники, обслуживающие автомобиль " + Car.getBrand() +" " + Car.getModel() + " : " + new Mechanic("Баринов Кирил", "Автосервис") + " , " + new Mechanic ("Иванов Александр", "Автосервис"));
+    }
+
+    public static void mechanicsServicingTheCar(String mechanic1, String mechanic4){
+       
+    }
+    public static void nameofTheCarDriver(){
+        System.out.println("Имя водителя - " + DriverD.getName());
+    }
     private static void printPassDiagnostics() {
         System.out.println("Автобусы диагностику проходить не должны");
     }
