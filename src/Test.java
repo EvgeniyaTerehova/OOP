@@ -86,6 +86,22 @@ public class Test {
                 new DriverD("Коншу Алексей Сергеевич", true, 14)
 
         };
+
+        List<Driver>drivers = new ArrayList<>();
+        drivers.add(new DriverB("Степанов Николай Иванович", true, 7));
+        drivers.add( new DriverB("Киров Роман Антонович", true, 8));
+        drivers.add(new DriverB("Строков Савва Николаевич", true, 10));
+        drivers.add(new DriverB("Тофт Михаил Михайлович", true, 12));
+        drivers.add(new DriverC("Белякин Иван Иванович", true, 14));
+        drivers.add(new DriverC("Федотов Иван Васильевич", true, 13));
+        drivers.add(new DriverC("Чаварга Василий Иванович", true, 8));
+        drivers.add( new DriverC("Михеев Василий Александрович", true, 9));
+        drivers.add( new DriverD("Фурлетов Антон Иванович", true, 9));
+        drivers.add( new DriverD("Жданов Антон Николаевич", true, 14));
+        drivers.add(new DriverD("Витов Арнольд Константинович", true, 13));
+        drivers.add(new DriverD("Коншу Алексей Сергеевич", true, 14));
+
+
         printDriverDS();
         System.out.println();
 
@@ -157,7 +173,21 @@ public class Test {
         for (Transport transport : transports) {
             map.put(transport, transport.getMechanicList());
         }
+
+        //Коллекции. Set. Iterator*/
+
+        Set<Driver> driverSet = new HashSet<>();
+        for (Driver driver : drivers) {
+            driverSet.add(driver);
+        }
+        Iterator<Driver> iterator = driverSet.iterator();
+        while (iterator.hasNext()) {
+            Driver driver = iterator.next();
+            System.out.println(driver);
+        }
+
     }
+
     public static void addACarToTheQueue(Transport transport) throws TransportTypeException {
         transport.passDiagnostics();
         getCarToTheQueue().offer(transport);
