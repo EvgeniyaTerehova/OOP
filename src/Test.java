@@ -1,9 +1,6 @@
 import com.skypro.transport.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import static com.skypro.transport.Transport.getCarToTheQueue;
 
@@ -89,6 +86,22 @@ public class Test {
                 new DriverD("Коншу Алексей Сергеевич", true, 14)
 
         };
+
+        List<Driver>drivers = new ArrayList<>();
+        drivers.add(new DriverB("Степанов Николай Иванович", true, 7));
+        drivers.add( new DriverB("Киров Роман Антонович", true, 8));
+        drivers.add(new DriverB("Строков Савва Николаевич", true, 10));
+        drivers.add(new DriverB("Тофт Михаил Михайлович", true, 12));
+        drivers.add(new DriverC("Белякин Иван Иванович", true, 14));
+        drivers.add(new DriverC("Федотов Иван Васильевич", true, 13));
+        drivers.add(new DriverC("Чаварга Василий Иванович", true, 8));
+        drivers.add( new DriverC("Михеев Василий Александрович", true, 9));
+        drivers.add( new DriverD("Фурлетов Антон Иванович", true, 9));
+        drivers.add( new DriverD("Жданов Антон Николаевич", true, 14));
+        drivers.add(new DriverD("Витов Арнольд Константинович", true, 13));
+        drivers.add(new DriverD("Коншу Алексей Сергеевич", true, 14));
+
+
         printDriverDS();
         System.out.println();
 
@@ -108,8 +121,6 @@ public class Test {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-
-
 
         System.out.println(mechanic1);
         System.out.println(mechanic2);
@@ -139,7 +150,44 @@ public class Test {
         queueToService.offer(new Truck("BAW", "Fenix L", 4.3f, mechanicList, 45,196, 161));
         System.out.println(queueToService.peek());
         printCarOutATechnicalInspectionOfTheCar();
+
+        //Введение в коллекции. Map*/
+
+        List<Transport> transports = new ArrayList<>();
+        transports.add(new Car("Audi", "A8", 3.0f, mechanicList, 60, 250, 7));
+        transports.add(new Car("BMW", "Z8", 2.4f, mechanicList, 58,  270, 10));
+        transports.add(new Car("Kia", "Sportage 4", 2.4f, mechanicList, 58, 240, 11));
+        transports.add(new Car("Hyundai", "Avent", 1.6f, mechanicList, 57, 261, 14));
+        transports.add(new Bus("Mercedes-Benz", "Conecto G", 7.7f, mechanicList, 60, 120, 45));
+        transports.add(new Bus("Mercedes-Benz", "Intouro", 7.2f, mechanicList, 58,181, 119));
+        transports.add(new Bus("Mercedes-Benz", "Travego", 12.8f, mechanicList, 59,180, 120));
+        transports.add(new Bus("Mercedes-Benz", "Tourismo M2", 10.7f, mechanicList, 61,185, 123));
+        transports.add(new Truck("Foton", "Ollin BJ1069", 4.5f, mechanicList, 48, 195, 150));
+        transports.add(new Truck("Foton", "BJ 1089VDPFG-SD", 4.8f, mechanicList, 47,198, 154));
+        transports.add(new Truck("BAW", "Tonik", 4.7f, mechanicList, 49,189, 149));
+        transports.add(new Truck("BAW", "Fenix L", 4.3f, mechanicList, 45,196, 161));
+
+
+        Map<Transport, List<Mechanic>> map = new HashMap<>();
+
+        for (Transport transport : transports) {
+            map.put(transport, transport.getMechanicList());
+        }
+
+        //Коллекции. Set. Iterator*/
+
+        Set<Driver> driverSet = new HashSet<>();
+        for (Driver driver : drivers) {
+            driverSet.add(driver);
+        }
+        Iterator<Driver> iterator = driverSet.iterator();
+        while (iterator.hasNext()) {
+            Driver driver = iterator.next();
+            System.out.println(driver);
+        }
+
     }
+
     public static void addACarToTheQueue(Transport transport) throws TransportTypeException {
         transport.passDiagnostics();
         getCarToTheQueue().offer(transport);
